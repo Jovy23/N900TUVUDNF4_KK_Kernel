@@ -2167,10 +2167,10 @@
 		qcom,sensor-id = <0>;
 		qcom,poll-ms = <250>;
 		qcom,limit-temp = <75>;
-		qcom,temp-hysteresis = <0>;
+		qcom,temp-hysteresis = <15>;
 		qcom,freq-step = <2>;
 		qcom,freq-control-mask = <0xf>;
-		qcom,core-limit-temp = <85>;
+		qcom,core-limit-temp = <95>;
 		qcom,core-temp-hysteresis = <10>;
 		qcom,core-control-mask = <0xe>;
 		qcom,hotplug-temp = <110>;
@@ -2179,8 +2179,8 @@
 				"tsens_tz_sensor7", "tsens_tz_sensor8";
 		qcom,vdd-restriction-temp = <5>;
 		qcom,vdd-restriction-temp-hysteresis = <10>;
-		qcom,pmic-sw-mode-temp = <85>;
-		qcom,pmic-sw-mode-temp-hysteresis = <75>;
+		qcom,pmic-sw-mode-temp = <90>;
+		qcom,pmic-sw-mode-temp-hysteresis = <80>;
 		qcom,pmic-sw-mode-regs = "vdd-dig";
 		vdd-dig-supply = <&pm8841_s2_floor_corner>;
 		vdd-gfx-supply = <&pm8841_s4_floor_corner>;
