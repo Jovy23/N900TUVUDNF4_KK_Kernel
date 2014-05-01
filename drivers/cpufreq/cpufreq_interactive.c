@@ -1146,7 +1146,7 @@ define_one_global_rw(boostpulse_duration);
  
          ret = strict_strtoul(buf, 0, &val);
          if (ret < 0) return ret;
-         if (val < 300000) screen_off_max = 1267200;
+         if (val < 268800) screen_off_max = 1267200;
          else screen_off_max = val;
          return count;
  }

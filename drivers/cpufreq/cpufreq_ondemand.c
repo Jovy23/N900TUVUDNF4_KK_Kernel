@@ -342,7 +342,7 @@ static ssize_t store_screen_off_maxfreq(struct kobject *kobj,
 
          ret = strict_strtoul(buf, 0, &val);
          if (ret < 0) return ret;
-         if (val < 300000) screen_off_max = 2265600;
+         if (val < 268800) screen_off_max = 2265600;
          else screen_off_max = val;
          return count;
 }
