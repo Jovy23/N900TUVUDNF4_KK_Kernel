@@ -39,6 +39,10 @@
 #include <asm/uaccess.h>
 #endif
 
+#ifdef CONFIG_POWERSUSPEND
+#include <linux/powersuspend.h>
+#endif
+
 #include <asm/system_info.h>
 #if defined(CONFIG_MIPI_LCD_S6E3FA0_FORCE_VIDEO_MODE)
 #define CONFIG_FB_MSM_MIPI_SAMSUNG_OCTA_CMD_FULL_HD_PT_PANEL 1
@@ -2376,7 +2380,13 @@ static int mdss_dsi_panel_on(struct mdss_panel_data *pdata)
 		pr_err("%s: Invalid input data\n", __func__);
 		return -EINVAL;
 	}
+
 	cpufreq_screen_on = true;
+
+#ifdef CONFIG_POWERSUSPEND
+	set_power_suspend_state_panel_hook(POWER_SUSPEND_INACTIVE); // Yank555.lu : add hook to handle powersuspend tasks (wakeup)
+#endif
+
 	ctrl = container_of(pdata, struct mdss_dsi_ctrl_pdata,
 			panel_data);
 
@@ -2512,6 +2522,10 @@ static int mdss_dsi_panel_off(struct mdss_panel_data *pdata)
 
 	pr_info("mdss_dsi_panel_off --\n");
 	cpufreq_screen_on = false;
+
+#ifdef CONFIG_POWERSUSPEND
+	set_power_suspend_state_panel_hook(POWER_SUSPEND_ACTIVE); // Yank555.lu : add hook to handle powersuspend tasks (sleep)
+#endif
 
 #if defined(CONFIG_DUAL_LCD)
 	msd.lcd_panel_cmds = 0;
