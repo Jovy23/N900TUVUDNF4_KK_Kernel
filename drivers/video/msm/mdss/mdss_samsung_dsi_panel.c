@@ -72,6 +72,8 @@
 
 #define DT_CMD_HDR 6
 
+extern bool cpufreq_screen_on;
+
 #if defined(octa_manufacture_date)
 static struct dsi_cmd nv_date_read_cmds;
 char mdate_buffer[10];
@@ -2374,6 +2376,7 @@ static int mdss_dsi_panel_on(struct mdss_panel_data *pdata)
 		pr_err("%s: Invalid input data\n", __func__);
 		return -EINVAL;
 	}
+	cpufreq_screen_on = true;
 	ctrl = container_of(pdata, struct mdss_dsi_ctrl_pdata,
 			panel_data);
 
@@ -2508,6 +2511,7 @@ static int mdss_dsi_panel_off(struct mdss_panel_data *pdata)
 	mipi_samsung_disp_send_cmd(PANEL_DISP_OFF, true);
 
 	pr_info("mdss_dsi_panel_off --\n");
+	cpufreq_screen_on = false;
 
 #if defined(CONFIG_DUAL_LCD)
 	msd.lcd_panel_cmds = 0;
