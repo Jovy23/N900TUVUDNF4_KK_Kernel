@@ -123,7 +123,7 @@ static u64 boostpulse_endtime;
 #define DEFAULT_TIMER_SLACK (4 * DEFAULT_TIMER_RATE)
 static int timer_slack_val = DEFAULT_TIMER_SLACK;
 
-#define DEFAULT_SCREEN_OFF_MAX 2265600
+#define DEFAULT_SCREEN_OFF_MAX 1267200
 static unsigned long screen_off_max = DEFAULT_SCREEN_OFF_MAX;
 
 static bool io_is_busy;
@@ -1146,7 +1146,7 @@ define_one_global_rw(boostpulse_duration);
  
          ret = strict_strtoul(buf, 0, &val);
          if (ret < 0) return ret;
-         if (val < 300000) screen_off_max = 2265600;
+         if (val < 300000) screen_off_max = 1267200;
          else screen_off_max = val;
          return count;
  }
