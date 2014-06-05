@@ -17,7 +17,6 @@
  *
  */
 
-#include <linux/earlysuspend.h>
 #include <linux/init.h>
 #include <linux/module.h>
 #include <linux/cpufreq.h>
@@ -313,6 +312,7 @@ static int __cpuinit msm_cpufreq_init(struct cpufreq_policy *policy)
 
 static int __cpuinit msm_cpufreq_cpu_callback(struct notifier_block *nfb,
 		unsigned long action, void *hcpu)
+
 {
 	unsigned int cpu = (unsigned long)hcpu;
 	int rc;
