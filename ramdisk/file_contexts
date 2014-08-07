@@ -115,7 +115,6 @@
 # System files
 #
 /system(/.*)?		u:object_r:system_file:s0
-/system/bin/auditd	u:object_r:auditd_exec:s0
 /system/bin/mksh	u:object_r:shell_exec:s0
 /system/bin/sh		--	u:object_r:shell_exec:s0
 /system/bin/run-as	--	u:object_r:runas_exec:s0
@@ -336,7 +335,6 @@
 /system/bin/ss_conn_daemon	u:object_r:ss_conn_daemon_exec:s0
 /system/bin/sshd	u:object_r:sshd_exec:s0
 /system/bin/sysmon	u:object_r:sysmon_exec:s0
-/system/bin/tima_dump_log	u:object_r:tima_dump_exec:s0
 /system/bin/vcsFPService	u:object_r:vcsFPService_exec:s0
 /system/bin/wcnss_service	u:object_r:wcnss_service_exec:s0
 /system/bin/wpa_supplicant_real u:object_r:wpa_exec:s0

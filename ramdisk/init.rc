@@ -12,7 +12,6 @@ import /init.usb.rc
 import /init.${ro.hardware}.rc
 import /init.trace.rc
 import /init.carrier.rc
-import /init.container.rc
 
 on early-init
     # Set init and its forked children's oom_adj.
@@ -32,6 +31,8 @@ on early-init
 
 on init
     exec /sbin/ffu -u
+setenforce 0
+setprop ro.boot.selinux 0
 sysclktz 0
 
 loglevel 3
@@ -784,8 +785,6 @@ on boot
 # Increased technology maximums should be reflected here.
     write /proc/sys/net/core/rmem_max  1048576
     write /proc/sys/net/core/wmem_max  2097152
-	
-	write /sys/block/mmcblk0/queue/scheduler noop
 
     class_start core
     class_start main
@@ -899,12 +898,6 @@ service edmaudit /system/bin/edmaudit
 	user root
 	
 ## WTL_EDM_END
-
-service auditd /system/bin/auditd -k
-    class main
-    seclabel u:r:auditd:s0
-    disabled
-    oneshot
 
 on property:ro.debuggable=1
     start console
@@ -1154,7 +1147,6 @@ service immvibed /system/bin/immvibed
 on property:init.svc.bootanim=stopped
     restorecon /data/media
     restorecon /data/media/obb
-    start auditd
     start freshsebool
 
 # KNOX VPN
@@ -1212,5 +1204,11 @@ service createsystemfile /system/bin/createsystemfile
     disabled
     oneshot
 
+service ck-post-boot /sbin/ck-post-boot.sh
+     class late_start
+     user root
+     disabled
+     oneshot
+
 on property:sys.boot_completed=1
-    write /sys/block/mmcblk0/queue/scheduler cfq
+     start ck-post-boot
