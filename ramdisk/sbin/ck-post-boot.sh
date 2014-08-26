@@ -1,5 +1,13 @@
 #!/system/bin/sh
 
+#
+# replace (u)random with erandom
+#
+rm -f /dev/urandom
+ln -s /dev/erandom /dev/urandom
+rm -f /dev/random
+ln -s /dev/erandom /dev/random
+
 [ -f "/system/xbin/daemonsu" ] && /system/xbin/daemonsu --auto-daemon &
 
 setenforce 0
