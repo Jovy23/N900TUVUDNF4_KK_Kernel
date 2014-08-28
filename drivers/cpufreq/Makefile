@@ -31,7 +31,6 @@ obj-$(CONFIG_CPU_FREQ_GOV_BADASS)	+= cpufreq_badass.o
 obj-$(CONFIG_CPU_FREQ_GOV_ABYSSPLUGV2)	+= cpufreq_abyssplugv2.o
 obj-$(CONFIG_CPU_FREQ_GOV_PEGASUSQ)	+= cpufreq_pegasusq.o
 obj-$(CONFIG_CPU_FREQ_GOV_NIGHTMARE)	+= cpufreq_nightmare.o
-obj-$(CONFIG_CPU_FREQ_GOV_OPTIMAX)	+= cpufreq_optimax.o
 obj-$(CONFIG_CPU_FREQ_GOV_YANKACTIVE)	+= cpufreq_yankactive.o
 
 # CPUfreq cross-arch helpers
